@@ -17,10 +17,11 @@ const webdriver: LocalForageDriver = {
         getItem<T>(key: string, callback?: (err: any, value: T) => void): Promise<T> {
             return new Promise((resolve, reject) => {
                 chrome.storage.local.get(key, res => {
+                    let result = typeof key === 'string' ? res[key] : res;
                     if (callback) {
-                        callback(null, res);
+                        callback(null, result);
                     }
-                    resolve(res);
+                    resolve(result);
                 });
             });
 
