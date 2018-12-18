@@ -160,7 +160,7 @@ export class Storage {
           return LocalForage.WEBSQL;
         case 'localstorage':
           return LocalForage.LOCALSTORAGE;
-        case "webExtensionSyncStorage":
+        case "webExtensionLocalStorage":
           return chromeExtensionDriver._driver;
       }
     });
