@@ -88,7 +88,9 @@ const webdriver: LocalForageDriver = {
         setItem<T>(key: string, value: T, callback?: (err: any, value: T) => void): Promise<T> {
             return new Promise(
                 (resolve, reject) => {
-                    chrome.storage.local.set({key: value}, res => {
+                    let obj = {}
+                    obj[key] = value
+                    chrome.storage.local.set(obj, res => {
                         if (callback) {
                             callback(null, res);
                         }
