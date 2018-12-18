@@ -4,6 +4,7 @@ import * as LocalForage from 'localforage';
 
 import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 
+import chromeExtensionDriver from './webdriver';
 /**
  * Storage is an easy way to store key/value pairs and JSON objects.
  * Storage uses a variety of storage engines underneath, picking the best one available
@@ -116,7 +117,7 @@ export class Storage {
       const defaultConfig = getDefaultConfig();
       const actualConfig = Object.assign(defaultConfig, config || {});
 
-      LocalForage.defineDriver(CordovaSQLiteDriver)
+      LocalForage.defineDriver(chromeExtensionDriver)
         .then(() => {
           db = LocalForage.createInstance(actualConfig);
         })
@@ -159,6 +160,8 @@ export class Storage {
           return LocalForage.WEBSQL;
         case 'localstorage':
           return LocalForage.LOCALSTORAGE;
+        case "webExtensionSyncStorage":
+          return chromeExtensionDriver._driver;
       }
     });
   }
