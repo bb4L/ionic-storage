@@ -1,7 +1,7 @@
 declare let chrome: any;
 const webdriver: LocalForageDriver = {
   _driver: "webExtensionLocalStorage",
-  _support: chrome.runtime && chrome.runtime.id,
+  _support: chrome && chrome.runtime && chrome.runtime.id,
   _initStorage(): Promise<void> {
     return Promise.resolve();
   },
